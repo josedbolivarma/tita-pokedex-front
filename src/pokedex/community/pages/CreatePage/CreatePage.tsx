@@ -59,7 +59,6 @@ export default function CreatePage() {
             ...values,
             img: values.img
         }
-        // dispatch(addFormikAsync(values));
         addPokemon(pokemon);
         navigate('/community');
     }
@@ -101,7 +100,6 @@ export default function CreatePage() {
         <img className={styles.pokemon_img} src={fileImage ? fileImage : "https://res.cloudinary.com/duzncuogi/image/upload/v1727226113/tita-pokedex/assets/icons/who_is_this_pokemon_iyosk9.png"} alt="Your Pokemon" />
 
         <div className={styles.order__box}>
-        {/* <label>Name</label> */}
           <Field className="font-size-24" placeholder="Pokemon Name" name="name" />
           {errors.name && touched.name ? (
             <label className={styles.mark}>{errors.name}</label>
@@ -109,7 +107,6 @@ export default function CreatePage() {
         </div>
 
         <div className={styles.order__box}>
-        {/* <label>Types</label> */}
         <div className='flex gap-16' role="group" aria-labelledby="checkbox-group">
           {
             typeElements.map(({name}: {name: string}, index: number) => (
@@ -122,28 +119,23 @@ export default function CreatePage() {
           }
           </div>
           
-
-          {/* <Field placeholder="Types" name="types" /> */}
           {errors.type && touched.type ? (
             <span className={styles.mark}>{errors.type}</span>
           ) : null}
         </div>
         <div className={styles.order__box}>
-        {/* <label>Generation</label> */}
           <Field placeholder="Generation" name="generation" />
           {errors.generation && touched.generation ? (
             <span className={styles.mark}>{errors.generation}</span>
           ) : null}
         </div>
         <div className={styles.order__box}>
-        {/* <label>Weight</label> */}
           <Field placeholder="Weight" name="weight" />
           {errors.weight && touched.weight ? (
             <span className={styles.mark}>{errors.weight}</span>
           ) : null}
         </div>
         <div className={styles.order__box}>
-        {/* <label>Height</label> */}
           <Field placeholder="Height" name="height" />
           {errors.height && touched.height ? (
             <span className={styles.mark}>{errors.height}</span>

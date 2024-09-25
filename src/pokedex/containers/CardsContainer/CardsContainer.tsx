@@ -18,7 +18,7 @@ export const CardsContainer = ({ loading, data, error }: any) => {
       {
         (!loading && !error) && (
           data?.map((pokemon: any) => (
-            <Link key={pokemon.id} to={`/pokemon/${pokemon.name}`}>
+            <Link key={`${pokemon.id}-${pokemon?.name}`} to={(pokemon?.community) ? `/pokemon/community/${pokemon?.id}` : `/pokemon/${pokemon?.name}`}>
               <Card pokemon={pokemon} />
             </Link>
           ))

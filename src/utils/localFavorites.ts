@@ -1,6 +1,8 @@
 export interface FavoritePokemon {
     id: number;
     name: string;
+    community?: boolean;
+    img?: string;
   }
 
 // Función para agregar o eliminar un Pokémon de favoritos
@@ -24,14 +26,14 @@ const toggleFavorite = (pokemon: FavoritePokemon) => {
   };
   
   // Función para verificar si un Pokémon está en favoritos
-  const existInFavorites = (id: number): boolean => {
+  const existInFavorites = (id: number, community?: boolean): boolean => {
     if (typeof window === 'undefined') return false;
   
     // Obtener la lista de favoritos (array de objetos Pokémon)
     const favorites: FavoritePokemon[] = JSON.parse(localStorage.getItem('favorites') || '[]');
   
-    // Verificar si existe un Pokémon con el mismo ID
-    return favorites.some((fav) => fav.id === id);
+    // Verificar si existe un Pokémon con el mismo ID y si pertenece a la comunidad o no
+    return favorites.some((fav) => fav.id === id && fav?.community == community);
   };
   
   // Función para obtener la lista completa de Pokémon en favoritos

@@ -41,7 +41,6 @@
 
 @media screen and (min-width: 960px) {
     .hero_container {
-        /* position: absolute; */
         justify-content: start;
         align-items: start;
         flex-direction: row;

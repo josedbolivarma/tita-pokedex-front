@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from "./Card.module.css";
 import { capitalize, formatId } from '../../../utils';
 
@@ -11,9 +11,9 @@ export const Card = ({pokemon}: any) => {
 
   return (
     <div className={styles.root}>
-        <p className={`${styles.mark} color-black`} style={{fontSize: "10px"}}>#{formatId(pokemon?.id)}</p>
+        <p className={`${styles.mark} color-black`} style={{fontSize: "10px"}}>{(pokemon?.community) ? "𝒎𝒂𝒓𝒌 #" : "#"}{formatId(pokemon?.id)}</p>
         <div className={styles.box}>
-            <img className={styles.pokemon} src={image} alt="Pokemon" onError={handleImageError} />
+            <img className={styles.pokemon} src={(pokemon?.community && pokemon?.img) ? pokemon?.img : image} alt="Pokemon" onError={handleImageError} />
             <p className="color-black font-size-14">{capitalize(pokemon?.name)}</p>
         </div>
         <div className={`${styles.divider_shadow}`} />

@@ -20,7 +20,6 @@ export default function HomePage() {
     <section className="root color-primary-bg">
       <Header />
       <Layout>
-        {/* <CardsContainer data={data?.pokemons} loading={loading} error={error} /> */}
         <CardsContainer data={pokemons} loading={loading} />
       </Layout>
     </section>

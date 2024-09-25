@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { BreadCrumb, Chip, Spinner } from '../../../../shared'
 import { Layout } from '../../../layouts'
 import { getGradientClass, getTypeColor } from '../../../../utils'
@@ -6,12 +6,39 @@ import { useFetchPokemons } from '../../../../hooks'
 import { useParams } from 'react-router-dom'
 
 import styles from "./CommunityDetailPage.module.css";
+import localFavorites from '../../../../utils/localFavorites'
+import confetti from 'canvas-confetti'
 
 export default function CommunityDetailPage() {
     const {id} = useParams();
     const { data, isLoading, error } = useFetchPokemons(`${id}`);
+    const [isInFavorites, setIsInFavorites] = useState<boolean>( false );
+
 
     const pokemon = data;
+
+    const onToggleFavorite = () => {
+      const favoritePokemon = {id: pokemon?.id, name: pokemon?.name, community: true, img: pokemon?.img };
+      localFavorites.toggleFavorite( favoritePokemon );
+      setIsInFavorites( !isInFavorites );
+  
+      if ( isInFavorites ) return;
+  
+      confetti({
+        zIndex: 999,
+        particleCount: 100,
+        spread: 160,
+        angle: -100,
+        origin: {
+          x: 1,
+          y: 0
+        }
+      })
+    }
+
+    useEffect(() => {
+      setIsInFavorites( localFavorites.existInFavorites(pokemon?.id, true) );
+    }, [ pokemon?.id ])
 
     if (error) return <p>Error: {error}</p>;
 
@@ -20,9 +47,9 @@ export default function CommunityDetailPage() {
           <div className="container-x pt-24">
           <BreadCrumb id={pokemon?.id} name={pokemon?.name} />
             <div className='w-100 flex justify-content-end px-20'>
-              {/* <button className='flex flex-col text-center font-size-24 cursor-pointer gap-2' onClick={ onToggleFavorite } style={{ zIndex: 100, alignItems: "end" }}>
+              <button className='flex flex-col text-center font-size-24 cursor-pointer gap-2' onClick={ onToggleFavorite } style={{ zIndex: 100, alignItems: "end" }}>
                 <i className="fa-regular fa-star" style={{color: isInFavorites ? "yellow" : "black"}}></i>
-              </button> */}
+              </button>
             </div>
               <img className={styles.back_pokeball_img} src="https://res.cloudinary.com/duzncuogi/image/upload/v1727160796/tita-pokedex/assets/icons/pokeball_mgeat3.png" alt="Pokeball" />
           </div>
