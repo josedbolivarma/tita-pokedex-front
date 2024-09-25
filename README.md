@@ -71,7 +71,11 @@ Consulte la sección sobre [implementación](https://facebook.github.io/create-r
 
 # Desarrollo:
 
+## Estructura del Proyecto
 
+- **/src**: Código fuente principal.
+
+![alt text](image.png)
 
 # Despliegue:
 
