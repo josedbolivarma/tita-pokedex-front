@@ -77,6 +77,75 @@ Consulte la sección sobre [implementación](https://facebook.github.io/create-r
 
 ![alt text](image.png)
 
+- **/src**: Código fuente principal.
+  - **/pokedex**: Vistas.
+
+Se creó un módulo principal correspondiente al archivo raiz encargado de la página de lista de pokemones, página de detalle de cada pokemon, y la página de favoritos, y el módulo "community" que corresponde a la lista, el detalle y la creación de los pokemones personalizados por nuestros usuarios.
+
+![alt text](image-1.png)
+
+- **/src**: Código fuente principal.
+  - **/hooks**: Custom Hooks.
+
+  * useFetchPokemons.ts
+    Este custom hook se aplica sobre el módulo "community" y se encarga de las operaciones de listar, ver detalle y agregar los pokemones sobre nuestra [API REST](https://tita-pokedex-back-production.up.railway.app/).
+
+![alt text](image-4.png)
+
+- **/src**: Código fuente principal.
+  - **/helpers**: Funciones auxiliares medianamente complejas.
+
+  * FileUp.ts
+    Maneja las funcionalidades relacionadas con la carga de archivos en [Cloudinary](https://cloudinary.com/)
+
+![alt text](image-5.png)
+
+- **/src**: Código fuente principal.
+  - **/utils**: Funciones auxiliares y de transformación.
+
+* localFavorites.ts
+  Maneja las funcionalidades relacionadas con el local storage para agregar y cargar pokemones en la lista de favoritos.
+
+![alt text](image-6.png)
+
+- **/src**: Código fuente principal.
+  - **/redux**: Estado Global Con Redux.
+
+Se configuró redux para manejar el estado global del módulo principal de pokemones, a través de graphql se implementaron las acciones de listar y buscar pokemones tanto por nombre cómo por id.
+
+![alt text](image-2.png)
+
+
+- **/src**: Código fuente principal.
+  - **/router**: Rutas modulares e implementación de Lazy Load.
+
+ * AppRoutes.tsx 
+     Entry point de las rutas que posteriormente puede será implementado para gestionar el manejo de rutas públicas y privadas dentro del flujo de la aplicación.
+
+ * DashboardRoutes.tsx 
+     Componente que gestiona y renderiza las rutas dinámicas de la aplicación, mapeando cada ruta definida en un array y redirigiendo a la ruta principal en caso de que no coincida ninguna.
+
+ * routes.ts 
+     Presenta el conjunto de rutas y componentes configurados con carga diferida (lazy load) para mejorar el rendimiento, cargando el componente solo cuando se navega a la ruta correspondiente.
+
+
+![alt text](image-3.pngD)
+
+- **/src**: Código fuente principal.
+  - **/shared**: Componentes globales reutilizables
+
+![alt text](image-7.png)
+
+- **/src**: Código fuente principal.
+  - **/interfaces**: Interfaces y tipados de la aplicación
+
+![alt text](image-8.png)
+
+- **/src**: Código fuente principal.
+  - **/types**: Contiene datos reutilizados a lo largo de la aplicación, cómo los elementos de cada pokemon.
+
+![alt text](image-9.png)
+
 # Despliegue:
 
 - [Tita Pokedex Front](https://tita-pokedex-front.vercel.app/)
@@ -88,6 +157,7 @@ Consulte la sección sobre [implementación](https://facebook.github.io/create-r
 
 ### Algunos usos importantes del proyecto:
 
+* [Cloudinary](https://cloudinary.com/) : Carga y subida de imágenes
 * [Apollo Client](https://www.apollographql.com/docs/react/) : ^16.9.0
 * [GraphQL](https://graphql.org/) : ^3.11.8
 * [React-redux](https://react-redux.js.org/) : ^7.2.9 

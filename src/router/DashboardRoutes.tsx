@@ -12,7 +12,6 @@ export const DashboardRoutes = () => {
                 <Route key={path} path={path} element={<Component />} />
                ))
             }
-
             <Route path='*' element={<Navigate to='/' />} />
         </Routes>
     </>
