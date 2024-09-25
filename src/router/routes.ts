@@ -14,9 +14,9 @@ const lazy2 = lazy(() => import(/* webpackChunkName: "LazyDetailPage" */'../poke
 const lazy3 = lazy(() => import(/* webpackChunkName: "LazyFavoritesPage" */'../pokedex/pages/FavoritesPage/FavoritesPage'));
 
 // Community
-const lazy4 = lazy(() => import(/* webpackChunkName: "LazyFavoritesPage" */'../pokedex/pages/Community/CommunityPage/CommunityPage'));
-const lazy5 = lazy(() => import(/* webpackChunkName: "LazyFavoritesPage" */'../pokedex/pages/Community/CreatePage/CreatePage'));
-const lazy6 = lazy(() => import(/* webpackChunkName: "LazyFavoritesPage" */'../pokedex/pages/Community/CommunityDetailPage/CommunityDetailPage'));
+const lazy4 = lazy(() => import(/* webpackChunkName: "LazyFavoritesPage" */'../pokedex/community/pages/CommunityPage/CommunityPage'));
+const lazy5 = lazy(() => import(/* webpackChunkName: "LazyFavoritesPage" */'../pokedex/community/pages/CreatePage/CreatePage'));
+const lazy6 = lazy(() => import(/* webpackChunkName: "LazyFavoritesPage" */'../pokedex/community/pages/CommunityDetailPage/CommunityDetailPage'));
 
 
 export const routes: Route[] = [

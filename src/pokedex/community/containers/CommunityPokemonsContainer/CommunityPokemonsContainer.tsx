@@ -1,12 +1,12 @@
 import React from 'react'
-import { CommunityPokemonCard } from '../../components';
+import { CommunityPokemonCard } from '../../../components';
 
 import { useQuery } from '@apollo/client';
-import { GET_POKEMONS } from '../../../graphql';
+import { GET_POKEMONS } from '../../../../graphql';
 import { Link } from 'react-router-dom';
 
 import styles from "./CommunityPokemonsContainer.module.css";
-import { Spinner } from '../../../shared';
+import { Spinner } from '../../../../shared';
 
 export const CommunityPokemonsContainer = ({ loading, data, error }: any) => {
  

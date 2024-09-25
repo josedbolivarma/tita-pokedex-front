@@ -1,2 +1,2 @@
 export * from "./CardsContainer/CardsContainer";
-export * from "./CommunityPokemonsContainer/CommunityPokemonsContainer";
+export * from "../community/containers/CommunityPokemonsContainer/CommunityPokemonsContainer";

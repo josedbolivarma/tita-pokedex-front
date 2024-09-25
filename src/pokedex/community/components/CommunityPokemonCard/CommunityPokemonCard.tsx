@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from "./CommunityPokemonCard.module.css";
-import { formatId } from '../../../utils';
+import { formatId } from '../../../../utils';
 
 export const CommunityPokemonCard = ({pokemon}: any) => {
     return (
