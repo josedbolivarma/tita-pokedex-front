@@ -1,0 +1,12 @@
+.root {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+}
+
+
+.icon {
+    width: 32px;
+    height: 32px;
+}

@@ -1,0 +1,31 @@
+.pokemon_img {
+    width: 50%;
+    height: 50%;
+}
+
+.order__box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    border-bottom: 1px solid gray;
+}
+
+.mark {
+    font-size: 11px;
+    color: #E60023;
+}
+
+.type_icon {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 1px solid gray;
+    background: #F2F2F2;
+    cursor: pointer;
+}
+
+.submit {
+    padding: 4px 14px;
+    background: rgb(22, 22, 22);
+}

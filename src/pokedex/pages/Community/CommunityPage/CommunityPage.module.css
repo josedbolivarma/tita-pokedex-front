@@ -1,0 +1,13 @@
+.back_pokeball {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+
+.back_pokeball_img {
+    position: absolute;
+    top: 2%;
+    right: 1%;
+    width: 320px;
+    height: 320px;
+}

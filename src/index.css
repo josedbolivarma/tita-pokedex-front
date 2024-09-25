@@ -1,8 +1,14 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: "Poppins", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -11,3 +17,408 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+button {
+  cursor: pointer;
+  background: none;
+  outline: none;
+  border: none;
+}
+
+input {
+  outline: none;
+  border: none;
+  background: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  opacity: .8;
+}
+
+/* General */
+
+.w-40 {
+  width: 40%;
+}
+
+.w-60 {
+  width: 60%;
+}
+
+.w-80 {
+  width: 80%;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.h-100 {
+  height: 100%;
+}
+
+.min-h-100 {
+  min-height: 100vh;
+}
+
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+/* margin */
+.mt-em-4 {
+  margin-top: 4em;
+}
+
+.mt-em-6 {
+  margin-top: 6em;
+}
+
+.mb-em-4 {
+  margin-bottom: 4em;
+}
+
+.mb-em-6 {
+  margin-bottom: 6em;
+}
+
+/* padding */
+.p-2 {
+  padding: 2px;
+}
+
+.p-4 {
+  padding: 4px;
+}
+
+.p-6 {
+  padding: 6px;
+}
+
+.p-8 {
+  padding: 8px;
+}
+
+.px-2 {
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+.px-4 {
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.px-6 {
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+.px-8 {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.py-em-2 {
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
+
+.pt-14 {
+  padding-top: 14px !important;
+}
+
+.pt-16 {
+  padding-top: 16px !important;
+}
+
+.pt-18 {
+  padding-top: 18px !important;
+}
+
+.pt-24 {
+  padding-top: 24px !important;
+}
+
+.pt-48 {
+  padding-top: 48px !important;
+}
+
+.px-em-2 {
+  padding-left: 2em;
+  padding-right: 2em;
+}
+
+
+.root {
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  padding: 4px;
+}
+
+.color-white {
+  color: white;
+}
+
+.color-white-bg {
+  background-color: white;
+}
+
+.color-black {
+  color: 111;
+}
+
+.color-black-bg {
+  background-color: #111;
+}
+
+/* Fonts */
+
+.font-size-16 {
+  font-size: 16px;
+}
+
+.font-size-14 {
+  font-size: 14px;
+}
+
+.font-size-18 {
+  font-size: 18px;
+}
+
+.font-size-24 {
+  font-size: 24px;
+}
+
+.font-size-48 {
+  font-size: 48px;
+}
+
+.font-size-em-2 {
+  font-size: 2em;
+}
+
+.font-300 {
+  font-weight: 700;
+}
+
+.font-500 {
+  font-weight: 500;
+}
+
+.font-600 {
+  font-weight: 600;
+}
+
+.font-700 {
+  font-weight: 700;
+}
+
+.font-title {
+  font-weight: 700;
+  line-height: 32px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+/* flex */
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.flex-col-reverse {
+  flex-direction: column-reverse;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.justify-content-start {
+  justify-content: start;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.justify-content-end {
+  justify-content: end;
+}
+
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.align-items-start {
+  align-items: start;
+}
+
+.container {
+  padding: 40px;
+}
+
+.container-x {
+  padding: 0px 40px;
+}
+
+.container-y {
+  padding: 40px 0px;
+}
+
+/* gap */
+
+.gap-2 {
+  gap: 2px;
+}
+
+.gap-4 {
+  gap: 4px;
+}
+
+.gap-8 {
+  gap: 8px;
+}
+
+.gap-10 {
+  gap: 10px;
+}
+
+.gap-16 {
+  gap: 16px;
+}
+
+.gap-20 {
+  gap: 20px;
+}
+
+.gap-em-2 {
+  gap: 2em;
+}
+
+.gap-em-3 {
+  gap: 3em;
+}
+
+.radius-16 {
+  border-radius: 16px;
+}
+
+.color-primary {
+  color: #DC0A2D;
+}
+
+.color-primary-bg {
+  background-color: #DC0A2D;
+}
+
+.box-shadow-primary {
+  box-shadow: 0px 1px 3px 1px rgba(0,0,0,0.1);
+}
+
+.divider {
+  border: 1px solid #E0E0E0;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.btn {
+  cursor: pointer;
+  background: none;
+  outline: none;
+  border: none;
+  z-index: 1000;
+}
+
+.btn:hover {
+  opacity: .8;
+  transition: all ease-in-out .1s;
+  letter-spacing: 1;
+}
+
+.btn-primary {
+  border-radius: 6px;
+  padding: 12px 22px;
+  background: #333;
+  color: white;
+  letter-spacing: .3;
+}
+
+.display-none {
+  display: none;
+}
+
+.decoration-none {
+  text-decoration: none;
+}
+
+.avatar-sm {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: 1.5px solid #111;
+}
+
+/* Gradient Background Elements */
+
+.gradient-grass {
+  background: rgb(116,203,72);
+  background: linear-gradient(90deg, rgba(116,203,72,1) 0%, rgba(148,255,94,1) 35%, rgba(90,171,49,1) 100%);
+}
+
+.gradient-electric {
+  background: rgb(242,199,20);
+  background: linear-gradient(90deg, rgba(242,199,20,1) 0%, rgba(243,225,92,1) 35%, rgba(242,199,20,1) 100%);
+}
+
+.gradient-fire {
+  background: rgb(255,130,51);
+  background: linear-gradient(90deg, rgba(255,130,51,1) 0%, rgba(255,137,62,1) 35%, rgba(124,48,0,1) 100%);
+}
+
+.gradient-water {
+  background: rgb(100,147,235);
+  background: linear-gradient(90deg, rgba(100,147,235,1) 0%, rgba(126,171,255,1) 35%, rgba(76,123,209,1) 100%);
+}
+
+
+.transition {
+  transition: ease-in all .3s;
+}
+
+.letter-spacing-animation:hover {
+  letter-spacing: .8px;
+}
+
+/*  */

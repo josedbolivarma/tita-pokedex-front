@@ -1,0 +1,24 @@
+.filter_box {
+    border: 1px solid #333;
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 10px;
+    width: 150px;
+    text-align: left;
+  }
+
+  .filter_options {
+    border: 1px solid #333;
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 10px;
+    text-align: left;
+  }
+
+  .filter_options label {
+    margin-left: 3px;
+  }
+  
+  .filter_box h3 {
+    margin-bottom: 10px;
+  }
