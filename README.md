@@ -171,5 +171,5 @@ Se configuró redux para manejar el estado global del módulo principal de pokem
 
 - [Jose David Bolivar Mayora](https://github.com/josedbolivarma) Desarrollador Frontend / FullStack. 
 
-![Imagen1](https://user-images.githubusercontent.com/74075195/168011072-0e0c98e0-1dfd-4cfb-a9c4-cbf9e376bba1.png)
+![Imagen1](https://res.cloudinary.com/duzncuogi/image/upload/v1727196398/tita-pokedex/assets/icons/ash_kechum_qitr01.png)
 
