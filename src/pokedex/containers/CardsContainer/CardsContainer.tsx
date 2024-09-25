@@ -2,8 +2,6 @@ import React from 'react'
 import { Card } from '../../components';
 
 import styles from "./CardsContainer.module.css";
-import { useQuery } from '@apollo/client';
-import { GET_POKEMONS } from '../../../graphql';
 import { Link } from 'react-router-dom';
 import { Spinner } from '../../../shared';
 
