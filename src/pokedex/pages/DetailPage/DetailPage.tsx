@@ -156,7 +156,7 @@ export default function DetailPage() {
                   <div className="divider" />
                   <p>{stat?.base_stat}</p>
                   <div className="w-100">
-                  <ProgressBar color={color} />
+                  <ProgressBar color={color} percentage={stat?.base_stat} />
                   </div>
                 </div>
                   ))
