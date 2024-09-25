@@ -10,6 +10,8 @@ import { FileUp } from '../../../../helpers';
 import styles from "./CreatePage.module.css";
 import { Layout } from '../../../layouts';
 import { useFetchPokemons } from '../../../../hooks';
+import { typeElements } from '../../../../types';
+import { capitalize, getTypeColor, getTypeIcon } from '../../../../utils';
 
 interface FormValuesUI {
     name: string;
@@ -31,7 +33,6 @@ const SignupSchema = object().shape({
     weight: string(),
     height: string(),
 });
-
 
 export default function CreatePage() {
 
@@ -110,22 +111,17 @@ export default function CreatePage() {
         <div className={styles.order__box}>
         {/* <label>Types</label> */}
         <div className='flex gap-16' role="group" aria-labelledby="checkbox-group">
-            <label className='flex flex-col align-items-center gap-4'>
-              <Field className="display-none" type="checkbox" name="type" value="grass" />
-                <img className={styles.type_icon} src="https://res.cloudinary.com/duzncuogi/image/upload/v1727213791/tita-pokedex/assets/elements/descarga__3_-removebg-preview_clqmjt.png" alt="Grass Type" style={{ background: values?.type?.includes("grass") ? "green" : "#F2F2F2" }} />
-              <span>Grass</span>
+          {
+            typeElements.map(({name}: {name: string}, index: number) => (
+              <label key={`${index}-${name}`} className='flex flex-col align-items-center gap-4'>
+              <Field className="display-none" type="checkbox" name="type" value={name} />
+                <img className={`${styles.type_icon}`} style={{ background: values?.type?.includes(name) ? getTypeColor(name) : "#F2F2F2" }} src={getTypeIcon(name)} alt="Grass Type" />
+              <span>{capitalize(name)}</span>
             </label>
-            <label className='flex flex-col align-items-center gap-4'>
-              <Field className="display-none" type="checkbox" name="type" value="water" />
-                <img className={styles.type_icon} src="https://res.cloudinary.com/duzncuogi/image/upload/v1727213792/tita-pokedex/assets/elements/descarga__4_-removebg-preview_bycok2.png" alt="Water Type" style={{ background: values?.type?.includes("water") ? "blue" : "#F2F2F2" }} />
-              <span>Water</span>
-            </label>
-            <label className='flex flex-col align-items-center gap-4'>
-              <Field className="display-none" type="checkbox" name="type" value="fire" />
-                <img className={styles.type_icon} src="https://res.cloudinary.com/duzncuogi/image/upload/v1727213791/tita-pokedex/assets/elements/Llama_Ardiente_Roja_La_Llama_De_Fuego_Es_Simple_Y_Plana_PNG__dibujos__Clipart_De_Fuego__Rojo__Fuego_PNG_y_PSD_para_Descargar_Gratis___Pngtree-removebg-preview_bcwnza.png" alt="Fire Type"  style={{ background: values?.type?.includes("fire") ? "red" : "#F2F2F2" }} />
-              <span>Fire</span>
-            </label>
+            ))
+          }
           </div>
+          
 
           {/* <Field placeholder="Types" name="types" /> */}
           {errors.type && touched.type ? (

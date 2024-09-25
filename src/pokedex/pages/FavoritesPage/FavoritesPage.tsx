@@ -19,12 +19,6 @@ export default function FavoritesPage() {
 
         <BreadCrumb name={"Favorites"} />
 
-        {/* <div className='w-100 flex justify-content-end px-20'>
-          <button className='font-size-24 cursor-pointer' style={{ zIndex: 100 }}>
-            <i className="fa-regular fa-star"></i>
-          </button>
-        </div> */}
-        
         <div className={styles.back_pokeball}>
           <img className={styles.back_pokeball_img} src="https://res.cloudinary.com/duzncuogi/image/upload/v1727160796/tita-pokedex/assets/icons/pokeball_mgeat3.png" alt="Pokeball" />
         </div>
