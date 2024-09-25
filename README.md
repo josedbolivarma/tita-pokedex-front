@@ -129,7 +129,7 @@ Se configuró redux para manejar el estado global del módulo principal de pokem
      Presenta el conjunto de rutas y componentes configurados con carga diferida (lazy load) para mejorar el rendimiento, cargando el componente solo cuando se navega a la ruta correspondiente.
 
 
-![alt text](image-3.pngD)
+![alt text](image-10.png)
 
 - **/src**: Código fuente principal.
   - **/shared**: Componentes globales reutilizables
