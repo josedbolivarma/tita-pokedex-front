@@ -14,7 +14,7 @@ export const Header = () => {
 
           <div className='flex gap-16 align-items-center'>
             <Link className='color-white font-size-16' to="/community">
-              Community Pokemons
+              Community
             </Link>
 
             <Link className='color-white font-size-16' to="/favorites">

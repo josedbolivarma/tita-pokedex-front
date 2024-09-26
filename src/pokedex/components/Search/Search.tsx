@@ -1,13 +1,11 @@
 import React, { useState } from 'react'
 import styles from "./Search.module.css";
-import { useQuery } from '@apollo/client';
 import { useDispatch } from 'react-redux';
 import { FilterBox } from '../';
 import { searchByIdAsync, searchByNameAsync } from '../../../redux';
 
 export const Search = () => {
   const dispatch = useDispatch();
-  const [value, setValue] = useState("");
   const [filterType, setFilterType] = useState<"name"|"id">("name");
 
   const [showFilter, setShowFilter] = useState(false);
