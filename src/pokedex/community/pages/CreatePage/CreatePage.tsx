@@ -46,8 +46,6 @@ export default function CreatePage() {
   
   const { data, isLoading, error } = useFetchPokemons(`${id}`);
   
-  const navigate = useNavigate();
-
   const handleFileChange=(e: any)=>{
     const file = e.target.files[0]
     //el FileUp es la configuracion con cloudinary y le asigno la respuesta de cloudi a la foto
@@ -73,13 +71,11 @@ export default function CreatePage() {
             ...values,
             img: values.img
         }
-
         if (id) {
           editPokemon(id, pokemon)
         } else {
           addPokemon(pokemon);
         }
-        navigate('/community');
     }
 
   const initialValues: FormValuesUI = data ? data : {
