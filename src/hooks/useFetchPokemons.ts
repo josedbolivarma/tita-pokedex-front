@@ -26,7 +26,6 @@ export const useFetchPokemons = (url: string = "") => {
     }
   
     useEffect(() => {
-        
       getData();
     }, [url]);
 
@@ -48,9 +47,9 @@ export const useFetchPokemons = (url: string = "") => {
   };
 
   // Función para editar un Pokémon (PUT)
-  const editPokemon = async (id: number, updatedPokemon: PokemonCommunity) => {
+  const editPokemon = async (id: string, updatedPokemon: PokemonCommunity) => {
     try {
-      const response = await fetch(`${url}/pokemons/${id}`, {
+      const response = await fetch(`${BASE_URL}/pokemons/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -69,7 +68,7 @@ export const useFetchPokemons = (url: string = "") => {
   // Función para eliminar un Pokémon (DELETE)
   const deletePokemon = async (id: number) => {
     try {
-      await fetch(`${url}/pokemons/${id}`, {
+      await fetch(`${BASE_URL}/pokemons/${id}`, {
         method: 'DELETE',
       });
       setData((prevData: PokemonCommunity[]) => prevData.filter((pokemon: any) => pokemon?.id !== id));

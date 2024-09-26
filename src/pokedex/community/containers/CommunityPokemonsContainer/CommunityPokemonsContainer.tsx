@@ -1,10 +1,6 @@
 import React from 'react'
 import { CommunityPokemonCard } from '../../../components';
 
-import { useQuery } from '@apollo/client';
-import { GET_POKEMONS } from '../../../../graphql';
-import { Link } from 'react-router-dom';
-
 import styles from "./CommunityPokemonsContainer.module.css";
 import { Spinner } from '../../../../shared';
 
@@ -21,9 +17,7 @@ export const CommunityPokemonsContainer = ({ loading, data, error }: any) => {
       {
         (!loading && !error) && (
           data?.map((pokemon: any) => (
-            <Link key={pokemon.id} to={`/pokemon/community/${pokemon?.id}`}>
-              <CommunityPokemonCard pokemon={pokemon} />
-            </Link>
+              <CommunityPokemonCard key={pokemon.id} pokemon={pokemon} />
           ))
         )
       }

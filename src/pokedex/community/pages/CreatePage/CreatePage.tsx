@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BreadCrumb } from '../../../../shared'
 
 import { object, string, number, array } from 'yup';
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Field, Formik } from 'formik';
 import { FileUp } from '../../../../helpers';
 
@@ -12,6 +12,11 @@ import { Layout } from '../../../layouts';
 import { useFetchPokemons } from '../../../../hooks';
 import { typeElements } from '../../../../types';
 import { capitalize, getTypeColor, getTypeIcon } from '../../../../utils';
+
+import { Swiper, SwiperSlide } from "swiper/react"
+// Import Swiper styles
+import 'swiper/css';
+
 
 interface FormValuesUI {
     name: string;
@@ -35,9 +40,11 @@ const SignupSchema = object().shape({
 });
 
 export default function CreatePage() {
-
+  const {id} = useParams();
   const [fileImage, setFileImage] = useState('');
-  const { addPokemon } = useFetchPokemons();
+  const { addPokemon, editPokemon } = useFetchPokemons();
+  
+  const { data, isLoading, error } = useFetchPokemons(`${id}`);
   
   const navigate = useNavigate();
 
@@ -53,17 +60,29 @@ export default function CreatePage() {
          })
  }
 
+    useEffect(() => {
+      if (data?.id) {
+        setFileImage(data?.img);
+      }
+    }, [data?.id]);
+ 
+
     const handleSubmit = (values: any) => {
         values.img = fileImage;
         const pokemon = {
             ...values,
             img: values.img
         }
-        addPokemon(pokemon);
+
+        if (id) {
+          editPokemon(id, pokemon)
+        } else {
+          addPokemon(pokemon);
+        }
         navigate('/community');
     }
 
-  const initialValues: FormValuesUI = {
+  const initialValues: FormValuesUI = data ? data : {
     name: '',
     type: [],
     img: '',
@@ -72,12 +91,11 @@ export default function CreatePage() {
     height: '',
   };
 
-
   return (
     <section className='root color-black-bg'>
 
         <div className="container">
-        <BreadCrumb name={"Create Your Pokemon"} />
+        <BreadCrumb name={ id ? "Edit Your Pokemon" : "Create Your Pokemon"} />
 
         </div>
         
@@ -91,64 +109,77 @@ export default function CreatePage() {
         // same shape as initial values
         handleSubmit(values)
       }}
+      enableReinitialize
     >
       {({ values, errors, touched, handleSubmit, handleChange, handleReset }) => (
         <form onSubmit={handleSubmit} className='w-100 h-100 flex flex-col gap-16 justify-content-center align-items-center '
         >
-                <h1 className='color-black'>Create Your Pokemon</h1>
+                <h1 className='color-black'>{ id ? "Edit Your Pokemon" : "Create Your Pokemon"}</h1>
 
         <img className={styles.pokemon_img} src={fileImage ? fileImage : "https://res.cloudinary.com/duzncuogi/image/upload/v1727226113/tita-pokedex/assets/icons/who_is_this_pokemon_iyosk9.png"} alt="Your Pokemon" />
 
         <div className={styles.order__box}>
-          <Field className="font-size-24" placeholder="Pokemon Name" name="name" />
+          <Field className="font-size-24" placeholder="Pokemon Name" name="name" value={values.name || ""} />
           {errors.name && touched.name ? (
             <label className={styles.mark}>{errors.name}</label>
           ) : null}
         </div>
 
         <div className={styles.order__box}>
-        <div className='flex gap-16' role="group" aria-labelledby="checkbox-group">
+        <div className='flex align-items-center gap-16 overflow-hidden' role="group" aria-labelledby="checkbox-group">
+          <i className="fa-solid fa-arrow-left"></i>
+        <Swiper
+      spaceBetween={10}
+      slidesPerView={8}
+      onSlideChange={() => console.log('slide change')}
+      onSwiper={(swiper: any) => console.log(swiper)}
+    >
           {
             typeElements.map(({name}: {name: string}, index: number) => (
-              <label key={`${index}-${name}`} className='flex flex-col align-items-center gap-4'>
-              <Field className="display-none" type="checkbox" name="type" value={name} />
+              <SwiperSlide key={`${index}-${name}`}>
+              <label className='flex flex-col align-items-center gap-4'>
+              <Field className="display-none" type="checkbox" name="type" value={name || ""} />
                 <img className={`${styles.type_icon}`} style={{ background: values?.type?.includes(name) ? getTypeColor(name) : "#F2F2F2" }} src={getTypeIcon(name)} alt="Grass Type" />
               <span>{capitalize(name)}</span>
             </label>
+            </SwiperSlide>
             ))
           }
+          </Swiper>
+          <i className="fa-solid fa-arrow-right"></i>
           </div>
-          
           {errors.type && touched.type ? (
             <span className={styles.mark}>{errors.type}</span>
           ) : null}
         </div>
         <div className={styles.order__box}>
-          <Field placeholder="Generation" name="generation" />
+          <Field placeholder="Generation" name="generation" value={values.generation || 0} />
           {errors.generation && touched.generation ? (
             <span className={styles.mark}>{errors.generation}</span>
           ) : null}
         </div>
         <div className={styles.order__box}>
-          <Field placeholder="Weight" name="weight" />
+          <Field placeholder="Weight" name="weight" value={values.weight || ""} />
           {errors.weight && touched.weight ? (
             <span className={styles.mark}>{errors.weight}</span>
           ) : null}
         </div>
         <div className={styles.order__box}>
-          <Field placeholder="Height" name="height" />
+          <Field placeholder="Height" name="height" value={values.height || ""} />
           {errors.height && touched.height ? (
             <span className={styles.mark}>{errors.height}</span>
           ) : null}
         </div>
-          <Field onChange={handleFileChange} name="img" type="file" />
+          <input onChange={(event) => {
+            handleFileChange(event)
+          }} name="img" type="file" />
           {errors.img && touched.img ? <div>{errors.img}</div> : null}
      
 
           <button 
           className='btn btn-primary'
-          type="submit">CREATE
-          
+          type="submit">
+          { id ? "EDIT" : "CREATE"}
           </button>
         </form>
       )}

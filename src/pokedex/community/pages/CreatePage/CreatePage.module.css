@@ -9,6 +9,7 @@
     align-items: center;
     width: 100%;
     border-bottom: 1px solid gray;
+    padding-bottom: 8px;
 }
 
 .mark {

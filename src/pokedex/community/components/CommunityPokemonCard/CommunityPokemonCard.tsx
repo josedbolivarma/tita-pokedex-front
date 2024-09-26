@@ -1,8 +1,11 @@
 import React from 'react'
 import styles from "./CommunityPokemonCard.module.css";
 import { formatId } from '../../../../utils';
+import { useNavigate } from 'react-router-dom';
 
 export const CommunityPokemonCard = ({pokemon}: any) => {
+    const navigate = useNavigate();
+
     return (
         <div className={`${styles.root}`}>
             <div className="flex justify-content-between align-items-center">
@@ -18,6 +21,14 @@ export const CommunityPokemonCard = ({pokemon}: any) => {
             <div className={styles.box}>
                 <img className={styles.pokemon} src={pokemon.img} alt="Pokemon" />
                 <p className="color-black font-size-14">{pokemon.name}</p>
+                <div className="flex align-items-center gap-4">
+                <button className='btn btn-primary' onClick={() => navigate(`/pokemon/community/${pokemon?.id}`)}>
+                <i className="fa-solid fa-eye"></i>
+                </button>
+                <button className='btn btn-primary' onClick={() => navigate(`/pokemon/edit/${pokemon?.id}`)}>
+                <i className="fa-solid fa-pencil"></i>
+                </button>
+                </div>
             </div>
             <div className={`${styles.divider_shadow}`} />
         </div>

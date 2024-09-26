@@ -51,6 +51,12 @@ export const routes: Route[] = [
         name: 'Create Pokemon Page'
     },
     {
+        to: '/pokemon/edit/:id',
+        path: '/pokemon/edit/:id',
+        Component: lazy5,
+        name: 'Edit Pokemon Page'
+    },
+    {
         to: '/pokemon/community/:id',
         path: '/pokemon/community/:id',
         Component: lazy6,

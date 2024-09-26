@@ -91,6 +91,10 @@ a:hover {
   margin-bottom: 6em;
 }
 
+.ml-4 {
+  margin-left: 4px;
+}
+
 /* padding */
 .p-2 {
   padding: 2px;
@@ -126,6 +130,10 @@ a:hover {
 .px-8 {
   padding-left: 8px;
   padding-right: 8px;
+}
+
+.pb-8 {
+  padding: 4px 0;
 }
 
 .py-em-2 {
@@ -379,6 +387,10 @@ a:hover {
   display: none;
 }
 
+.overflow-hidden {
+  overflow: hidden;
+}
+
 .decoration-none {
   text-decoration: none;
 }
@@ -412,6 +424,35 @@ a:hover {
   background: linear-gradient(90deg, rgba(100,147,235,1) 0%, rgba(126,171,255,1) 35%, rgba(76,123,209,1) 100%);
 }
 
+.gradient-ghost {
+  background: rgb(112,85,155);
+  background: linear-gradient(90deg, rgba(112,85,155,1) 0%, rgba(168,124,237,1) 35%, rgba(74,57,100,1) 100%);
+}
+
+.gradient-bug {
+  background: rgb(167,183,35);
+  background: linear-gradient(90deg, rgba(167,183,35,1) 0%, rgba(203,222,43,1) 35%, rgba(124,136,26,1) 100%);
+}
+
+.gradient-normal {
+  background: rgb(170,167,127);
+  background: linear-gradient(90deg, rgba(170,167,127,1) 0%, rgba(207,203,156,1) 35%, rgba(122,120,92,1) 100%);
+}
+
+.gradient-rock {
+  background: rgb(182,158,49);
+  background: linear-gradient(90deg, rgba(182,158,49,1) 0%, rgba(232,208,98,1) 35%, rgba(133,116,38,1) 100%);
+}
+
+.gradient-psychic {
+  background: rgb(251,85,132);
+  background: linear-gradient(90deg, rgba(251,85,132,1) 0%, rgba(255,133,167,1) 35%, rgba(154,25,61,1) 100%);
+}
+
+.gradient-steel {
+  background: rgb(183,185,208);
+  background: linear-gradient(90deg, rgba(183,185,208,1) 0%, rgba(221,223,250,1) 35%, rgba(107,108,120,1) 100%);
+}
 
 .transition {
   transition: ease-in all .3s;

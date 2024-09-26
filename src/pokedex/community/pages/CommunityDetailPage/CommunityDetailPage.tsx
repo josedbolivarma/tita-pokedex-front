@@ -11,9 +11,10 @@ import confetti from 'canvas-confetti'
 
 export default function CommunityDetailPage() {
     const {id} = useParams();
-    const { data, isLoading, error } = useFetchPokemons(`${id}`);
-    const [isInFavorites, setIsInFavorites] = useState<boolean>( false );
+    
+    const { data, isLoading, error } = useFetchPokemons(!id ? '' : id);
 
+    const [isInFavorites, setIsInFavorites] = useState<boolean>( false );
 
     const pokemon = data;
 
