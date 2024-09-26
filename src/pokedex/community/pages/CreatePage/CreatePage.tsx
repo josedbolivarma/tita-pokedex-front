@@ -95,7 +95,7 @@ export default function CreatePage() {
     <section className='root color-black-bg'>
 
         <div className="container">
-        <BreadCrumb name={ id ? "Edit Your Pokemon" : "Create Your Pokemon"} />
+        <BreadCrumb name={ id ? "Edit Your Pokemon" : "Create Your Pokemon"} path='/community' />
 
         </div>
         

@@ -93,7 +93,7 @@ export default function DetailPage() {
       background: !pokemon_types ? "transparent" : getTypeColor(pokemon_types[0]?.pokemon_v2_type?.name)
     }}>
       <div className="container">
-       <BreadCrumb id={pokemon?.id} name={pokemon?.name} />
+       <BreadCrumb id={pokemon?.id} name={pokemon?.name} path='/'/>
 
         <div className='w-100 flex justify-content-end px-20'>
           <button className='flex flex-col text-center font-size-24 cursor-pointer gap-2' onClick={ onToggleFavorite } style={{ zIndex: 100, alignItems: "end" }}>

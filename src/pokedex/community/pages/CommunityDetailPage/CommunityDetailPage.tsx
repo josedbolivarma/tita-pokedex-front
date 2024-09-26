@@ -46,7 +46,7 @@ export default function CommunityDetailPage() {
     return (
         <section className={`root ${pokemon?.type ? getGradientClass(pokemon?.type[0]) : "transparent"}`}>
           <div className="container-x pt-24">
-          <BreadCrumb id={pokemon?.id} name={pokemon?.name} />
+          <BreadCrumb id={pokemon?.id} name={pokemon?.name} path='/community' />
             <div className='w-100 flex justify-content-end px-20'>
               <button className='flex flex-col text-center font-size-24 cursor-pointer gap-2' onClick={ onToggleFavorite } style={{ zIndex: 100, alignItems: "end" }}>
                 <i className="fa-regular fa-star" style={{color: isInFavorites ? "yellow" : "black"}}></i>

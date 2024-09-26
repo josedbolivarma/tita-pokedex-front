@@ -16,7 +16,7 @@ export default function CommunityPage() {
         <>
 
         <div className="container">
-            <BreadCrumb name={"Community"} />
+            <BreadCrumb name={"Community"} path='/' />
             <div className='w-100 flex justify-content-end px-20'>
               <button onClick={() => navigate('/pokemon/create')} className='btn btn-primary'>
                 Add Your Pokemon

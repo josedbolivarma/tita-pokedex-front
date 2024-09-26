@@ -17,7 +17,7 @@ export default function FavoritesPage() {
     <section className='root color-black-bg'>
         <div className="container">
 
-        <BreadCrumb name={"Favorites"} />
+        <BreadCrumb name={"Favorites"} path='/' />
 
         <div className={styles.back_pokeball}>
           <img className={styles.back_pokeball_img} src="https://res.cloudinary.com/duzncuogi/image/upload/v1727160796/tita-pokedex/assets/icons/pokeball_mgeat3.png" alt="Pokeball" />
