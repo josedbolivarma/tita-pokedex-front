@@ -129,8 +129,27 @@ export default function CreatePage() {
         <div className='flex align-items-center gap-16 overflow-hidden' role="group" aria-labelledby="checkbox-group">
           <i className="fa-solid fa-chevron-left"></i>
         <Swiper
-      spaceBetween={10}
-      slidesPerView={8}
+        spaceBetween={10}
+      slidesPerView={1}
+      breakpoints={{
+        // when window width is >= 320px
+        320: {
+          slidesPerView: 3,
+          spaceBetween: 10
+        },
+        640: {
+          slidesPerView: 4,
+          spaceBetween: 20,
+        },
+        768: {
+          slidesPerView: 6,
+          spaceBetween: 40,
+        },
+        1024: {
+          slidesPerView: 8,
+          spaceBetween: 40,
+        },
+      }}
       onSlideChange={() => console.log('slide change')}
       onSwiper={(swiper: any) => console.log(swiper)}
     >
