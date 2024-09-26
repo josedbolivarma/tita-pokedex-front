@@ -34,9 +34,9 @@ const SignupSchema = object().shape({
     .required('Required')
     .matches(/^[a-zA-Z0-9 ]*$/, 'No special characters are allowed'),
     type: array().of(string()).min(1, "The pokemon must have at least one type"),
-    generation: number(),
-    weight: string(),
-    height: string(),
+    generation: number().typeError('Must be a number').required('Required'),
+    weight: string().required('Required'),
+    height: string().required('Required'),
 });
 
 export default function CreatePage() {
@@ -66,7 +66,7 @@ export default function CreatePage() {
  
 
     const handleSubmit = (values: any) => {
-        values.img = fileImage;
+        values.img = fileImage ? fileImage : "https://res.cloudinary.com/duzncuogi/image/upload/v1727226113/tita-pokedex/assets/icons/who_is_this_pokemon_iyosk9.png";
         const pokemon = {
             ...values,
             img: values.img
@@ -82,7 +82,7 @@ export default function CreatePage() {
     name: '',
     type: [],
     img: '',
-    generation: 0,
+    generation: null,
     weight: '',
     height: '',
   };
@@ -107,7 +107,7 @@ export default function CreatePage() {
       }}
       enableReinitialize
     >
-      {({ values, errors, touched, handleSubmit, handleChange, handleReset }) => (
+      {({ values, errors, touched, handleSubmit, setTouched, handleChange, handleReset }) => (
         <form onSubmit={handleSubmit} className='w-100 h-100 flex flex-col gap-16 justify-content-center align-items-center '
         >
                 <h1 className='color-black'>{ id ? "Edit Your Pokemon" : "Create Your Pokemon"}</h1>
@@ -121,7 +121,7 @@ export default function CreatePage() {
           ) : null}
         </div>
 
-        <div className={styles.order__box}>
+        <div className='w-100 flex flex-col gap-8 justify-content-center text-center'>
         <div className='flex align-items-center gap-16 overflow-hidden' role="group" aria-labelledby="checkbox-group">
           <i className="fa-solid fa-chevron-left"></i>
         <Swiper
@@ -168,7 +168,7 @@ export default function CreatePage() {
           ) : null}
         </div>
         <div className={styles.order__box}>
-          <Field placeholder="Generation" name="generation" value={values.generation || 0} />
+          <Field placeholder="Generation" name="generation" value={values.generation || null} />
           {errors.generation && touched.generation ? (
             <span className={styles.mark}>{errors.generation}</span>
           ) : null}
