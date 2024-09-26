@@ -1,3 +1,4 @@
-export interface Pokemos {
-
+export interface Pokemon {
+  id: number;
+  name: string;
 };

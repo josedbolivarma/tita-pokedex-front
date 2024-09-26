@@ -9,6 +9,7 @@ export const GET_POKEMONS = gql`
   }
 `;
 
+
 export const GET_POKEMONS_BY_SEARCH_NAME = gql`
 query GetPokemonBySearch($name: String) {
   pokemon_v2_pokemon(limit: 30, where: { name: { _ilike: $name } }) {
@@ -27,16 +28,9 @@ query GetPokemonBySearch($name: String) {
 
 export const GET_POKEMONS_BY_SEARCH_ID = gql`
 query GetPokemonBySearch($id: Int) {
-  pokemon_v2_pokemon(limit: 30, where: { id: { _eq: $id } }) {
+  pokemon_v2_pokemon(where: { id: { _eq: $id } }) {
     id
     name
-    height
-    weight
-    pokemon_v2_pokemontypes {
-      pokemon_v2_type {
-        name
-      }
-    }
   }
 }
 `

@@ -10,12 +10,19 @@ import { getTypeColor } from '../../../utils';
 import localFavorites from '../../../utils/localFavorites';
 
 import confetti from 'canvas-confetti';
+import { useDispatch, useSelector } from 'react-redux';
+import { searchByIdAsync, selectPrevAndNextPokemonAsync } from '../../../redux';
 
 
 export default function DetailPage() {
   const { nameOrId } = useParams<{ nameOrId: string }>();
   const [color, setColor] = useState("transparent");
   const [isInFavorites, setIsInFavorites] = useState<boolean>( false );
+
+  const {prevPokemon, nextPokemon} = useSelector((store: any) => store);
+
+  const dispatch = useDispatch();
+  
   
   const navigate = useNavigate();
 
@@ -50,12 +57,24 @@ export default function DetailPage() {
 
   const image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${ pokemon?.id }.svg`;
 
-  const paginatePokemon = () => {
-    
+  const paginatePokemon = (select: "prev" | "next") => {
+    if (select === "prev" && !prevPokemon[0]?.name) return;
+    if (select === "next" && !nextPokemon[0]?.name) return;
+
+    if (select === "prev" && prevPokemon[0]?.name) {
+      navigate(`/pokemon/${prevPokemon[0]?.name}`)
+    }
+
+    if (select === "next" && nextPokemon[0]?.name) {
+      navigate(`/pokemon/${nextPokemon[0]?.name}`)
+    }
   }
   
   useEffect(() => {
-    setIsInFavorites( localFavorites.existInFavorites(pokemon?.id) );
+    if (pokemon?.id) {
+      dispatch(selectPrevAndNextPokemonAsync(pokemon?.id));
+      setIsInFavorites( localFavorites.existInFavorites(pokemon?.id) );
+    }
   }, [ pokemon?.id ])
 
   useEffect(() => {
@@ -86,12 +105,22 @@ export default function DetailPage() {
         </div>
       
       <div className="w-100 flex justify-content-between align-items-center gap-4">
-      <button className='btn' onClick={() => paginatePokemon()}>
-      <i className="fa-solid fa-chevron-left font-size-24"></i>
-      </button>
-      <button className='btn'>
-      <i className="fa-solid fa-chevron-right font-size-24"></i>
-      </button>
+      {
+        prevPokemon.length > 0 && (
+          <button className='btn' onClick={() => paginatePokemon("prev")}>
+            <i className="fa-solid fa-chevron-left font-size-24"></i>
+          </button>
+        )
+      }
+      
+      <div />
+      {
+        nextPokemon.length > 0 && (
+          <button className='btn' onClick={() => paginatePokemon("next")}>
+            <i className="fa-solid fa-chevron-right font-size-24"></i>
+          </button>
+        )
+      }
       </div>
 
       </div>
