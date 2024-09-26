@@ -127,7 +127,7 @@ export default function CreatePage() {
 
         <div className={styles.order__box}>
         <div className='flex align-items-center gap-16 overflow-hidden' role="group" aria-labelledby="checkbox-group">
-          <i className="fa-solid fa-arrow-left"></i>
+          <i className="fa-solid fa-chevron-left"></i>
         <Swiper
       spaceBetween={10}
       slidesPerView={8}
@@ -146,7 +146,7 @@ export default function CreatePage() {
             ))
           }
           </Swiper>
-          <i className="fa-solid fa-arrow-right"></i>
+          <i className="fa-solid fa-chevron-right"></i>
           </div>
           {errors.type && touched.type ? (
             <span className={styles.mark}>{errors.type}</span>

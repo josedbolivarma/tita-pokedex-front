@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { BreadCrumb, Chip, ProgressBar, Spinner } from '../../../shared'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useQuery } from '@apollo/client';
 import { GET_POKEMON_INFO } from '../../../graphql';
 
@@ -16,6 +16,8 @@ export default function DetailPage() {
   const { nameOrId } = useParams<{ nameOrId: string }>();
   const [color, setColor] = useState("transparent");
   const [isInFavorites, setIsInFavorites] = useState<boolean>( false );
+  
+  const navigate = useNavigate();
 
   const onToggleFavorite = () => {
     const favoritePokemon = {id: pokemon?.id, name: pokemon?.name };
@@ -36,8 +38,6 @@ export default function DetailPage() {
     })
   }
 
-  
-
   const { loading, error, data } = useQuery<any>(
     GET_POKEMON_INFO,
     {
@@ -50,6 +50,10 @@ export default function DetailPage() {
 
   const image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${ pokemon?.id }.svg`;
 
+  const paginatePokemon = () => {
+    
+  }
+  
   useEffect(() => {
     setIsInFavorites( localFavorites.existInFavorites(pokemon?.id) );
   }, [ pokemon?.id ])
@@ -80,17 +84,28 @@ export default function DetailPage() {
         <div className={styles.back_pokeball}>
           <img className={styles.back_pokeball_img} src="https://res.cloudinary.com/duzncuogi/image/upload/v1727160796/tita-pokedex/assets/icons/pokeball_mgeat3.png" alt="Pokeball" />
         </div>
+      
+      <div className="w-100 flex justify-content-between align-items-center gap-4">
+      <button className='btn' onClick={() => paginatePokemon()}>
+      <i className="fa-solid fa-chevron-left font-size-24"></i>
+      </button>
+      <button className='btn'>
+      <i className="fa-solid fa-chevron-right font-size-24"></i>
+      </button>
+      </div>
+
       </div>
 
       {
         loading && <Spinner />
       }
 
-{
+      {
           (!loading && !error) && (
 
       <Layout>
         <>
+        
         <div className={styles.pokemon_box}>
           <img src={image} alt={`${pokemon?.name} Image`} className={styles.pokemon_image}/>
         </div>
