@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export const ImageWithSkeleton = ({ pokemon, image, handleImageError }: { pokemon: any, image: string, handleImageError: () => void }) => {
+export const ImageWithSkeleton = ({ pokemon, image, handleImageError, height }: { pokemon: any, image?: string, handleImageError?: () => void, height?: string }) => {
     const [loading, setLoading] = useState(true);
 
     const handleImageLoad = () => {
@@ -8,7 +8,7 @@ export const ImageWithSkeleton = ({ pokemon, image, handleImageError }: { pokemo
     };
   
     return (
-      <div style={{ position: 'relative', width: '100%', height: '100%', maxHeight: '280px' }}>
+      <div style={{ position: 'relative', width: '100%', height: '100%', maxHeight: height || '280px'  }}>
         {/* Esqueleto de carga (solo se muestra mientras loading es true) */}
         {loading && (
           <div
@@ -25,7 +25,7 @@ export const ImageWithSkeleton = ({ pokemon, image, handleImageError }: { pokemo
         {/* Imagen real */}
         <img
           className='w-100 h-100'
-          src={pokemon?.community && pokemon?.img ? pokemon?.img : image}
+          src={pokemon?.img ? pokemon?.img : image}
           alt="Pokemon"
           onError={handleImageError}
           onLoad={handleImageLoad} // Cuando la imagen se carga, cambiamos el estado

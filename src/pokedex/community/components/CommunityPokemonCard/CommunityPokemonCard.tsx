@@ -3,11 +3,11 @@ import styles from "./CommunityPokemonCard.module.css";
 import { formatId } from '../../../../utils';
 import { useNavigate } from 'react-router-dom';
 import { useFetchPokemons } from '../../../../hooks';
+import { ImageWithSkeleton } from '../../../skeletons';
 
 export const CommunityPokemonCard = ({pokemon}: any) => {
     const {deletePokemon} = useFetchPokemons();
     const navigate = useNavigate();
-
 
     return (
         <div className={`${styles.root}`}>
@@ -22,7 +22,7 @@ export const CommunityPokemonCard = ({pokemon}: any) => {
                 <p className={`${styles.mark} color-black`} style={{fontSize: "10px"}}>#{formatId(pokemon?.id)}</p>
             </div>
             <div className={styles.box}>
-                <img className={styles.pokemon} src={pokemon.img} alt="Pokemon" />
+                <ImageWithSkeleton pokemon={ pokemon } height='60%' />
                 <p className="color-black font-size-14">{pokemon.name}</p>
                 <div className="flex align-items-center gap-4">
                 <button className='btn btn-primary' onClick={() => deletePokemon(pokemon?.id)}>
