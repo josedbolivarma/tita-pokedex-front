@@ -337,6 +337,10 @@ a:hover {
   gap: 3em;
 }
 
+.z-100 {
+  z-index: 100;
+}
+
 .radius-16 {
   border-radius: 16px;
 }
