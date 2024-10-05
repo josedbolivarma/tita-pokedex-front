@@ -31,7 +31,7 @@ export const CommunityPokemonCard = ({pokemon}: any) => {
                 <button className='btn btn-primary' onClick={() => navigate(`/pokemon/community/${pokemon?.id}`)}>
                 <i className="fa-solid fa-eye"></i>
                 </button>
-                <button className='btn btn-primary' onClick={() => navigate(`/pokemon/edit/${pokemon?.id}`)}>
+                <button className='btn btn-primary' onClick={() => navigate(`/pokemon/edit/${pokemon?.id}`, {state: pokemon})}>
                 <i className="fa-solid fa-pencil"></i>
                 </button>
                 </div>

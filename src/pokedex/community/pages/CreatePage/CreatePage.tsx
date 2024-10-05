@@ -3,7 +3,7 @@ import { BreadCrumb } from '../../../../shared'
 
 import { object, string, number, array } from 'yup';
 
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { Field, Formik } from 'formik';
 import { FileUp } from '../../../../helpers';
 
@@ -40,11 +40,11 @@ const SignupSchema = object().shape({
 });
 
 export default function CreatePage() {
-  const {id} = useParams();
+  const location = useLocation();
+  const data = location.state || {};
+
   const [fileImage, setFileImage] = useState('');
   const { addPokemon, editPokemon } = useFetchPokemons();
-  
-  const { data, isLoading, error } = useFetchPokemons(`${id}`);
   
   const handleFileChange=(e: any)=>{
     const file = e.target.files[0]
@@ -64,15 +64,14 @@ export default function CreatePage() {
       }
     }, [data?.id]);
  
-
     const handleSubmit = (values: any) => {
         values.img = fileImage ? fileImage : "https://res.cloudinary.com/duzncuogi/image/upload/v1727226113/tita-pokedex/assets/icons/who_is_this_pokemon_iyosk9.png";
         const pokemon = {
             ...values,
             img: values.img
         }
-        if (id) {
-          editPokemon(id, pokemon)
+        if (data?.id) {
+          editPokemon(data?.id, pokemon)
         } else {
           addPokemon(pokemon);
         }
@@ -91,7 +90,7 @@ export default function CreatePage() {
     <section className='root color-black-bg'>
 
         <div className="container">
-        <BreadCrumb name={ id ? "Edit Your Pokemon" : "Create Your Pokemon"} path='/community' />
+        <BreadCrumb name={ data?.id ? "Edit Your Pokemon" : "Create Your Pokemon"} path='/community' />
 
         </div>
         
@@ -110,7 +109,7 @@ export default function CreatePage() {
       {({ values, errors, touched, handleSubmit, setTouched, handleChange, handleReset }) => (
         <form onSubmit={handleSubmit} className='w-100 h-100 flex flex-col gap-16 justify-content-center align-items-center '
         >
-                <h1 className='color-black'>{ id ? "Edit Your Pokemon" : "Create Your Pokemon"}</h1>
+                <h1 className='color-black'>{ data?.id ? "Edit Your Pokemon" : "Create Your Pokemon"}</h1>
 
         <img className={styles.pokemon_img} src={fileImage ? fileImage : "https://res.cloudinary.com/duzncuogi/image/upload/v1727226113/tita-pokedex/assets/icons/who_is_this_pokemon_iyosk9.png"} alt="Your Pokemon" />
 
@@ -146,8 +145,8 @@ export default function CreatePage() {
           spaceBetween: 40,
         },
       }}
-      onSlideChange={() => console.log('slide change')}
-      onSwiper={(swiper: any) => console.log(swiper)}
+      // onSlideChange={() => console.log('slide change')}
+      // onSwiper={(swiper: any) => console.log(swiper)}
     >
           {
             typeElements.map(({name}: {name: string}, index: number) => (
@@ -168,7 +167,7 @@ export default function CreatePage() {
           ) : null}
         </div>
         <div className={styles.order__box}>
-          <Field placeholder="Generation" name="generation" value={values.generation || null} />
+          <Field placeholder="Generation" id="generation" name="generation" value={values.generation!} />
           {errors.generation && touched.generation ? (
             <span className={styles.mark}>{errors.generation}</span>
           ) : null}
@@ -194,7 +193,7 @@ export default function CreatePage() {
           <button 
           className='btn btn-primary'
           type="submit">
-          { id ? "EDIT" : "CREATE"}
+          { data?.id ? "EDIT" : "CREATE"}
           </button>
         </form>
       )}
