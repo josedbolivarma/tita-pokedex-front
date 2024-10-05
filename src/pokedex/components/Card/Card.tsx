@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import styles from "./Card.module.css";
 import { capitalize, formatId } from '../../../utils';
+import { Pokemon } from '../../../interfaces/pokemon.interface';
 
-export const Card = ({pokemon}: any) => {
+export const Card = ({pokemon}: {pokemon: Pokemon}) => {
   const [image, setImage] = useState(`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${ pokemon.id }.svg`);
-
   const handleImageError = () => {
     setImage("https://res.cloudinary.com/duzncuogi/image/upload/v1727226113/tita-pokedex/assets/icons/who_is_this_pokemon_iyosk9.png"); // Si la imagen no carga correctamente
   };

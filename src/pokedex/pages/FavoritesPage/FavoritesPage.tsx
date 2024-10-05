@@ -4,13 +4,17 @@ import { CardsContainer } from '../../containers'
 import { BreadCrumb } from '../../../shared'
 
 import styles from "./FavoritesPage.module.css";
-import localFavorites, { FavoritePokemon } from '../../../utils/localFavorites';
+import localFavorites from '../../../utils/localFavorites';
+import { Pokemon } from '../../../interfaces/pokemon.interface';
 
 export default function FavoritesPage() {
-  const [favoritePokemons, setFavoritePokemons] = useState<FavoritePokemon[]>([]);
+  const [favoritePokemons, setFavoritePokemons] = useState<Pokemon[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     setFavoritePokemons( localFavorites.pokemons() );
+    setLoading(false);
   }, []);
 
   return (
@@ -30,7 +34,7 @@ export default function FavoritesPage() {
               <img src="https://res.cloudinary.com/duzncuogi/image/upload/v1727196398/tita-pokedex/assets/icons/ash_kechum_qitr01.png" alt="Ash Kechum" className={styles.pokemon_image}/>
             </div>
             <div className='mt-em-6'>
-              <CardsContainer data={favoritePokemons} />
+              <CardsContainer data={favoritePokemons} loading={loading} />
             </div>
           </>
         </Layout>

@@ -12,6 +12,8 @@ import localFavorites from '../../../utils/localFavorites';
 import confetti from 'canvas-confetti';
 import { useDispatch, useSelector } from 'react-redux';
 import { searchByIdAsync, selectPrevAndNextPokemonAsync } from '../../../redux';
+import { PokemonDetailResponse } from '../../../interfaces/pokemon.interface';
+import { BaseStatsContainer } from '../../containers';
 
 
 export default function DetailPage() {
@@ -27,7 +29,7 @@ export default function DetailPage() {
   const navigate = useNavigate();
 
   const onToggleFavorite = () => {
-    const favoritePokemon = {id: pokemon?.id, name: pokemon?.name };
+    const favoritePokemon = {id: pokemon?.id!, name: pokemon?.name! };
     localFavorites.toggleFavorite( favoritePokemon );
     setIsInFavorites( !isInFavorites );
 
@@ -45,7 +47,7 @@ export default function DetailPage() {
     })
   }
 
-  const { loading, error, data } = useQuery<any>(
+  const { loading, error, data } = useQuery<PokemonDetailResponse>(
     GET_POKEMON_INFO,
     {
       variables: { name: nameOrId || "" },
@@ -84,6 +86,7 @@ export default function DetailPage() {
     }
   }, [pokemon_types]);
 
+  console.log(data)
 
   if (error) return <p>Error: {error.message}</p>;
 
@@ -93,7 +96,7 @@ export default function DetailPage() {
       background: !pokemon_types ? "transparent" : getTypeColor(pokemon_types[0]?.pokemon_v2_type?.name)
     }}>
       <div className="container">
-       <BreadCrumb id={pokemon?.id} name={pokemon?.name} path='/'/>
+       <BreadCrumb id={pokemon?.id} name={pokemon?.name || ''} path='/'/>
 
         <div className='w-100 flex justify-content-end px-20'>
           <button className='flex flex-col text-center font-size-24 cursor-pointer gap-2' onClick={ onToggleFavorite } style={{ zIndex: 100, alignItems: "end" }}>
@@ -143,7 +146,7 @@ export default function DetailPage() {
             <div className='flex flex-col gap-em-3'>
           <div className="w-100 flex justify-content-center align-items-center gap-16 mt-em-4">
             {
-              pokemon_types?.map((type: any, index: number) => (
+              pokemon_types?.map((type, index: number) => (
                 <Chip key={`${index}-${type.pokemon_v2_type.name}`} type={type.pokemon_v2_type.name} />
               ))
             }
@@ -151,6 +154,7 @@ export default function DetailPage() {
 
           <div className='w-100 flex flex-col justify-content-center flex-col gap-20'>
               <h4 className='font-size-24 text-center' style={{color}}>About</h4>
+              
               <div className={`flex justify-content-center ${styles.pokemon_attributes}`}>
                 <div className="flex flex-col gap-20 align-items-center justify-content-between py-4 px-em-2">
                   <div className='flex gap-4'>
@@ -189,25 +193,11 @@ export default function DetailPage() {
 
           <p className='color-black font-size-14'>Eats Iron - And like sleeping all day long</p>
 
-          <div className='flex flex-col gap-em-2'>
-            <h4 className='font-size-24 text-center' style={{color}}>Base Stats</h4>
-            
-              <div className="w-100 flex flex-col gap-8">
-                {
-                  pokemon?.pokemon_v2_pokemonstats?.map((stat: any, index: number) => (
-                  <div key={index} className='flex gap-10 justify-content-start align-items-center'>
-                  <p style={{color, width: "30%"}}>{stat?.pokemon_v2_stat?.name.toLocaleUpperCase()}</p>
-                  <div className="divider" />
-                  <p>{stat?.base_stat}</p>
-                  <div className="w-100">
-                  <ProgressBar color={color} percentage={stat?.base_stat} />
-                  </div>
-                </div>
-                  ))
-                }
-              </div>
 
-          </div>
+          {/* BASE STATS */}
+          <BaseStatsContainer stats={pokemon?.pokemon_v2_pokemonstats!} color={color} />
+          {/* END BASE STATS */}
+
 
         </div>
         </>

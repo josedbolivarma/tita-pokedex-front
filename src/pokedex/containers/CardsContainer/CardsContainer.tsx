@@ -4,9 +4,16 @@ import { Card } from '../../components';
 import styles from "./CardsContainer.module.css";
 import { Link } from 'react-router-dom';
 import { Spinner } from '../../../shared';
+import { Pokemon } from '../../../interfaces/pokemon.interface';
 
-export const CardsContainer = ({ loading, data, error }: any) => {
- 
+type Props = {
+  loading: boolean,
+  data: Pokemon[],
+  error?: any
+}
+
+export const CardsContainer = ({ loading, data, error }: Props) => {
+  console.log(data);
   if (error) return <pre>{error.message}</pre>
 
   return (
@@ -17,7 +24,7 @@ export const CardsContainer = ({ loading, data, error }: any) => {
         <div className={`${styles.grid}`}>
       {
         (!loading && !error) && (
-          data?.map((pokemon: any) => (
+          data?.map((pokemon: Pokemon) => (
             <Link key={`${pokemon.id}-${pokemon?.name}`} to={(pokemon?.community) ? `/pokemon/community/${pokemon?.id}` : `/pokemon/${pokemon?.name}`}>
               <Card pokemon={pokemon} />
             </Link>
