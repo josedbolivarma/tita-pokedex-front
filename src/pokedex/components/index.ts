@@ -4,3 +4,4 @@ export * from "./Card/Card";
 export * from "../community/components/CommunityPokemonCard/CommunityPokemonCard";
 export * from "./FilterBox/FilterBox";
 export * from "./StatRow/StatRow";
+export * from "./BoxAttribute/BoxAttribute";

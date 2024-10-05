@@ -13,7 +13,7 @@ import confetti from 'canvas-confetti';
 import { useDispatch, useSelector } from 'react-redux';
 import { searchByIdAsync, selectPrevAndNextPokemonAsync } from '../../../redux';
 import { PokemonDetailResponse } from '../../../interfaces/pokemon.interface';
-import { BaseStatsContainer } from '../../containers';
+import { AttributesContainer, BaseStatsContainer } from '../../containers';
 
 
 export default function DetailPage() {
@@ -152,47 +152,11 @@ export default function DetailPage() {
             }
           </div>
 
-          <div className='w-100 flex flex-col justify-content-center flex-col gap-20'>
-              <h4 className='font-size-24 text-center' style={{color}}>About</h4>
-              
-              <div className={`flex justify-content-center ${styles.pokemon_attributes}`}>
-                <div className="flex flex-col gap-20 align-items-center justify-content-between py-4 px-em-2">
-                  <div className='flex gap-4'>
-                    <i className="fa-solid fa-weight-hanging"></i>
-                    <p>60,0 kg</p>
-                  </div>
-
-                  <p>Weight</p>
-                </div>
-
-                <div className="divider" />
-
-                <div className="flex flex-col gap-20 align-items-center justify-content-between px-em-2">
-                  <div className='flex gap-4'>
-                    <i className="fa-solid fa-ruler-vertical"></i>
-                    <p>1m</p>
-                  </div>
-
-                  <p>Height</p>
-                </div>
-
-                <div className="divider" />
-
-                <div className="flex flex-col gap-20 align-items-center justify-content-between px-em-2">
-                  <div className='flex flex-col gap-4'>
-                    <p>Mega punch</p>
-                    <p>Fire punch</p>
-                  </div>
-
-                  <p>Moves</p>
-                </div>
-
-                
-              </div>
-          </div>
+            {/* ATTRIBUTES */}
+          <AttributesContainer color={color} weight='60,0 kg' height='1m' moves={['Mega Punch', 'Fire Punch']} />
+            {/* END ATTRIBUTES */}
 
           <p className='color-black font-size-14'>Eats Iron - And like sleeping all day long</p>
-
 
           {/* BASE STATS */}
           <BaseStatsContainer stats={pokemon?.pokemon_v2_pokemonstats!} color={color} />
