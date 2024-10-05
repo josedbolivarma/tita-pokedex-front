@@ -86,7 +86,6 @@ export default function DetailPage() {
     }
   }, [pokemon_types]);
 
-  console.log(data)
 
   if (error) return <p>Error: {error.message}</p>;
 
@@ -138,9 +137,9 @@ export default function DetailPage() {
       <Layout>
         <>
         
-        <div className={styles.pokemon_box}>
-          <img src={image} alt={`${pokemon?.name} Image`} className={styles.pokemon_image}/>
-        </div>
+          <div className={styles.pokemon_box}>
+            <img src={image} alt={`${pokemon?.name} Image`} className={styles.pokemon_image}/>
+          </div>
         
         
             <div className='flex flex-col gap-em-3'>
@@ -151,6 +150,8 @@ export default function DetailPage() {
               ))
             }
           </div>
+
+          <h4 className='font-size-24 text-center' style={{color}}>About</h4>
 
             {/* ATTRIBUTES */}
           <AttributesContainer color={color} weight='60,0 kg' height='1m' moves={['Mega Punch', 'Fire Punch']} />

@@ -8,6 +8,7 @@ import { useParams } from 'react-router-dom'
 import styles from "./CommunityDetailPage.module.css";
 import localFavorites from '../../../../utils/localFavorites'
 import confetti from 'canvas-confetti'
+import { AttributesContainer } from '../../../containers'
 
 export default function CommunityDetailPage() {
     const {id} = useParams();
@@ -62,49 +63,21 @@ export default function CommunityDetailPage() {
           {
             (!isLoading && !error) && (
               <div className={`${styles.hero_container} h-100 container-x pt-48 flex flex-col-reverse justify-content-center align-items-center`}>
+            
+
+            {/* ATTRIBUTES */}
             <div className={`${styles.attributes} flex flex-col gap-em-3`}>
                 <div className='w-100 h-100 flex flex-col justify-content-center align-items-start gap-em-2'>
                   <h3 className='font-size-48'>{pokemon?.name}</h3>
                   <h4 className='font-size-24 color-black'>About</h4>
 
-                  <p className='color-black font-size-14'>Eats Iron - And like sleeping all day long</p>
+            <p className='color-black font-size-14'>Eats Iron - And like sleeping all day long</p>
+            <div className={`${styles.attributes} flex flex-col gap-em-3`}>
+              <AttributesContainer color={getTypeColor(pokemon?.type ? pokemon?.type[0] : "transparent")} weight='80 kg' height='2m' moves={['Mega Taser']} />
+            </div>
 
-                  <div className={`flex justify-content-center ${styles.pokemon_attributes}`}>
-                  <div className="flex flex-col gap-20 align-items-center justify-content-between py-4 px-em-2">
-                  <div className='flex gap-4'>
-                    <i className="fa-solid fa-weight-hanging"></i>
-                    <p>60,0 kg</p>
-                  </div>
 
-                  <p>Weight</p>
-                </div>
-
-                <div className="divider" />
-
-                <div className="flex flex-col gap-20 align-items-center justify-content-between px-em-2">
-                  <div className='flex gap-4'>
-                    <i className="fa-solid fa-ruler-vertical"></i>
-                    <p>1m</p>
-                  </div>
-
-                  <p>Height</p>
-                </div>
-
-                <div className="divider" />
-
-                <div className="flex flex-col gap-20 align-items-center justify-content-between px-em-2">
-                  <div className='flex flex-col gap-4'>
-                    <p>Mega punch</p>
-                    <p>Fire punch</p>
-                  </div>
-
-                  <p>Moves</p>
-                </div>
-    
-                    
-                  </div>
-
-                  <div className="w-100 flex justify-content-center align-items-center gap-16">
+              <div className="w-100 flex justify-content-center align-items-center gap-16">
                 {
                   pokemon?.type?.map((type: any, index: number) => (
                     <Chip key={`${index}-${type}`} type={type} />
@@ -113,6 +86,9 @@ export default function CommunityDetailPage() {
               </div>
                 </div>
             </div>
+
+            {/* END ATTRIBUTES */}
+
             
             <div className={styles.pokemon_container}>
               <div className={styles.pokemon_box}>

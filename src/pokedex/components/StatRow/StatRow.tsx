@@ -1,7 +1,8 @@
 import React from 'react'
 import { ProgressBar } from '../../../shared'
+import { PokemonStat } from '../../../interfaces/pokemon.interface'
 
-type Props = { stat: any, color: string }
+type Props = { stat: PokemonStat, color: string }
 
 export const StatRow = ({ stat, color }: Props) => {
     

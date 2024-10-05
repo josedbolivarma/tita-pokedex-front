@@ -13,7 +13,6 @@ type Props = {
 }
 
 export const CardsContainer = ({ loading, data, error }: Props) => {
-  console.log(data);
   if (error) return <pre>{error.message}</pre>
 
   return (

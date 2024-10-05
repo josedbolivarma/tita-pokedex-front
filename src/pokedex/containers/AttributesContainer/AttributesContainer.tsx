@@ -1,11 +1,9 @@
 import React from 'react'
 import { BoxAttribute } from '../../components';
 
-export const AttributesContainer = ({ color, weight, height, moves }: { color: string, weight: string, height: string, moves: string[] }) => {
+export const AttributesContainer = ({ color, weight, height, moves }: { color: string, weight: string, height: string, moves: string[]}) => {
   return (
-    <div className='w-100 flex flex-col justify-content-center gap-20'>
-      {/* <Heading text="About" color={color} /> */}
-      
+    <div className={`w-100 h-100 flex flex-col justify-content-center gap-20`}>      
       <div className={`flex justify-content-center`}>
         <BoxAttribute iconClass="fa-solid fa-weight-hanging" value={weight} label="Weight" />
         <div className="divider" />
