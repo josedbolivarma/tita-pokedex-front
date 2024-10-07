@@ -3,13 +3,17 @@ import { typesPokemons } from "../types/types"
 import { client, GET_POKEMONS, GET_POKEMONS_BY_SEARCH_ID, GET_POKEMONS_BY_SEARCH_NAME } from "../../graphql";
 import { Pokemon } from "../../interfaces/pokemon.interface";
 
-export const getPokemonsAsync = () => {
+export const getPokemonsAsync = (limit: number, offset: number) => {
     return async (dispatch: any) => {
         try {
-            const response = await client.query({query: GET_POKEMONS});
+            const response = await client.query({query: GET_POKEMONS, variables: {
+                limit,
+                offset
+            }});
 
             dispatch(getPokemonsSync({
                 pokemons: response?.data?.pokemons,
+                maxItems: response?.data?.pokemonCount,
                 loading: response?.data?.loading
             }));
               
@@ -20,7 +24,7 @@ export const getPokemonsAsync = () => {
 }
 
 
-export const getPokemonsSync = (payload: {pokemons: any, loading: boolean}) => {
+export const getPokemonsSync = (payload: {pokemons: any, maxItems: number, loading: boolean}) => {
     return {
         type: typesPokemons.list,
         payload

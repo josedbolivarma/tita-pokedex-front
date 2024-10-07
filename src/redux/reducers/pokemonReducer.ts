@@ -3,6 +3,7 @@ import { typesPokemons } from '../types/types';
 const initialState = {
     loading: true,
     pokemons: [],
+    maxItems: 12,
     prevPokemon: [],
     nextPokemon: []
 }
@@ -13,7 +14,8 @@ export const pokemonReducer = ( state: any = initialState, action: any )  => {
             return {
                 ...state,
                 loading: action.payload.loading,
-                pokemons: [...action.payload.pokemons]
+                pokemons: [...action.payload.pokemons],
+                maxItems: action.payload.maxItems
             };
         case typesPokemons.search:
             return {
