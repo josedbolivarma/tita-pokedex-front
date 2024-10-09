@@ -2,7 +2,7 @@ import React from 'react'
 import styles from "./FilterBox.module.css";
 
 interface Props {
-    changeFilterType: (type: "name"|"id") => void
+    changeFilterType: (type: "name"|"id"|"type") => void
 }
 
 export const FilterBox = ({ changeFilterType }: Props) => {
@@ -18,6 +18,10 @@ export const FilterBox = ({ changeFilterType }: Props) => {
           <div>
             <input type="radio" id="name" onChange={() => changeFilterType("name")} name="sort" value="name" />
             <label className='cursor-pointer' htmlFor="name">Name</label>
+          </div>
+          <div>
+            <input type="radio" id="type" onChange={() => changeFilterType("type")} name="sort" value="type" />
+            <label className='cursor-pointer' htmlFor="type">Type</label>
           </div>
           </div>
         </div>

@@ -2,7 +2,10 @@ import { gql } from "@apollo/client";
 
 export const GET_POKEMONS = gql`
   query GetPokemons($offset: Int, $limit: Int) {
-    pokemons: pokemon_v2_pokemon(limit: $limit, offset: $offset) {
+    pokemons: pokemon_v2_pokemon(
+      limit: $limit, 
+      offset: $offset,
+    ) {
       id
       name
     }
@@ -14,6 +17,33 @@ export const GET_POKEMONS = gql`
   }
 `;
 
+export const GET_POKEMONS_BY_TYPE = gql`
+  query GetPokemons($offset: Int, $limit: Int, $type: String) {
+    pokemons: pokemon_v2_pokemon(
+      limit: $limit, 
+      offset: $offset,
+      where: {
+        pokemon_v2_pokemontypes: { pokemon_v2_type: { name: { _eq: $type } } }
+      }
+    ) {
+      id
+      name
+    }
+    pokemonCount: pokemon_v2_pokemon_aggregate {
+      aggregate {
+        count
+      }
+    }
+  }
+`;
+
+export const GET_POKEMON_TYPES = gql`
+query GetPokemonTypes {
+  types: pokemon_v2_type {
+    name
+  }
+}
+`
 
 export const GET_POKEMONS_BY_SEARCH_NAME = gql`
 query GetPokemonBySearch($name: String) {

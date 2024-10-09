@@ -1,7 +1,12 @@
 .filter_box {
+    position: absolute;
     padding: 10px;
     border-radius: 8px;
     text-align: left;
+    right: 0;
+    top: 125%;
+    z-index: 10000;
+    border: 1px solid #333;
   }
 
   .filter_options {

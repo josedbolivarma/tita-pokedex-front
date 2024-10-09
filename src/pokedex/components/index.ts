@@ -6,3 +6,4 @@ export * from "./FilterBox/FilterBox";
 export * from "./StatRow/StatRow";
 export * from "./BoxAttribute/BoxAttribute";
 export * from "./Pagination/Pagination";
+export * from "./SearchResults/SearchResults";

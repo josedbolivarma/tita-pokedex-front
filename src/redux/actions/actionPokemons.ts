@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { typesPokemons } from "../types/types"
-import { client, GET_POKEMONS, GET_POKEMONS_BY_SEARCH_ID, GET_POKEMONS_BY_SEARCH_NAME } from "../../graphql";
+import { client, GET_POKEMON_TYPES, GET_POKEMONS, GET_POKEMONS_BY_SEARCH_ID, GET_POKEMONS_BY_SEARCH_NAME, GET_POKEMONS_BY_TYPE } from "../../graphql";
 import { Pokemon } from "../../interfaces/pokemon.interface";
 
 export const getPokemonsAsync = (limit: number, offset: number) => {
@@ -8,7 +8,7 @@ export const getPokemonsAsync = (limit: number, offset: number) => {
         try {
             const response = await client.query({query: GET_POKEMONS, variables: {
                 limit,
-                offset
+                offset,
             }});
 
             dispatch(getPokemonsSync({
@@ -23,6 +23,26 @@ export const getPokemonsAsync = (limit: number, offset: number) => {
     }
 }
 
+export const getPokemonsByTypeAsync = (limit: number, offset: number, selectedType: string) => {
+    return async (dispatch: any) => {
+        try {
+            const response = await client.query({query: GET_POKEMONS_BY_TYPE, variables: {
+                limit,
+                offset,
+                type: selectedType,
+            }});
+
+            dispatch(getPokemonsSync({
+                pokemons: response?.data?.pokemons,
+                maxItems: response?.data?.pokemonCount,
+                loading: response?.data?.loading
+            }));
+              
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
 
 export const getPokemonsSync = (payload: {pokemons: any, maxItems: number, loading: boolean}) => {
     return {
@@ -30,6 +50,29 @@ export const getPokemonsSync = (payload: {pokemons: any, maxItems: number, loadi
         payload
     }
 } 
+
+
+export const getPokemonTypesAsync = () => {
+    return async (dispatch: any) => {
+        try {
+            const response = await client.query({query: GET_POKEMON_TYPES });
+            dispatch(getPokemonTypesSync({
+                loading: response?.data?.loading,
+                types: response?.data?.types
+            }));
+        } catch (error) {
+            console.log(error);
+        }
+        
+    }
+}
+
+export const getPokemonTypesSync = (payload: {types: any, loading: boolean}) => {
+    return {
+        type: typesPokemons.types,
+        payload
+    }
+}
 
 export const selectPrevAndNextPokemonAsync = (id: number) => {
     return async (dispatch: any) => {

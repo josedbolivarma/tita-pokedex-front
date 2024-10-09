@@ -5,7 +5,8 @@ const initialState = {
     pokemons: [],
     maxItems: 12,
     prevPokemon: [],
-    nextPokemon: []
+    nextPokemon: [],
+    types: [],
 }
 
 export const pokemonReducer = ( state: any = initialState, action: any )  => {
@@ -17,6 +18,12 @@ export const pokemonReducer = ( state: any = initialState, action: any )  => {
                 pokemons: [...action.payload.pokemons],
                 maxItems: action.payload.maxItems
             };
+        case typesPokemons.types:
+            return {
+                ...state,
+                loading: action.payload.loading,
+                types: [...action.payload.types]
+            }
         case typesPokemons.search:
             return {
                 ...state,

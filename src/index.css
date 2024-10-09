@@ -83,6 +83,10 @@ a:hover {
   margin-top: 6em;
 }
 
+.mb-2 {
+  margin-bottom: 2px;
+}
+
 .mb-em-4 {
   margin-bottom: 4em;
 }
@@ -132,8 +136,8 @@ a:hover {
   padding-right: 8px;
 }
 
-.pb-8 {
-  padding: 4px 0;
+.pb-4 {
+  padding-bottom: 4px;
 }
 
 .py-em-2 {
@@ -341,8 +345,16 @@ a:hover {
   z-index: 100;
 }
 
+.radius-8 {
+  border-radius: 8px;
+}
+
 .radius-16 {
   border-radius: 16px;
+}
+
+.border-bottom {
+  border-bottom: 1px solid #E0E0E0;
 }
 
 .color-primary {

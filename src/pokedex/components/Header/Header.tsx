@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from "./Header.module.css";
-import { Search } from '../';
+import { Search, SearchResults } from '../';
 import { Link } from 'react-router-dom';
 
 export const Header = () => {
@@ -24,7 +24,6 @@ export const Header = () => {
         </nav>
         
         <Search />
-        
       </header>
   )
 }

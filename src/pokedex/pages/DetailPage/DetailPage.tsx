@@ -25,7 +25,6 @@ export default function DetailPage() {
 
   const dispatch = useDispatch();
   
-  
   const navigate = useNavigate();
 
   const onToggleFavorite = () => {
