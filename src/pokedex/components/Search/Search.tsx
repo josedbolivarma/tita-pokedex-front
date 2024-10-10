@@ -73,7 +73,7 @@ export const Search = () => {
             }
         </button>
 
-        {showFilter && <FilterBox changeFilterType={changeFilterType} />}
+        {showFilter && <FilterBox changeFilterType={changeFilterType} selectedFilter={filterType} />}
     </div>
   )
 }

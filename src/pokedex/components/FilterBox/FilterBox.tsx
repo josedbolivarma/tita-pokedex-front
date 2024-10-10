@@ -2,27 +2,48 @@ import React from 'react'
 import styles from "./FilterBox.module.css";
 
 interface Props {
-    changeFilterType: (type: "name"|"id"|"type") => void
+    changeFilterType: (type: "name"|"id"|"type") => void;
+    selectedFilter: "name"|"id"|"type";
 }
 
-export const FilterBox = ({ changeFilterType }: Props) => {
+type Option = {
+  id: number;
+  label: String;
+  name: "id"|"name"|"type";
+}
+
+const options: Option[] = [
+  {
+    id: 1,
+    label: "Name",
+    name: "name",
+  },
+  {
+    id: 2,
+    label: "Number",
+    name: "id",
+  },
+  {
+    id: 3,
+    label: "Type",
+    name: "type",
+  }
+]
+
+export const FilterBox = ({ changeFilterType, selectedFilter }: Props) => {
 
   return (
     <div className={`color-primary-bg ${styles.filter_box}`}>
           <h3 className='color-white'>Sort by:</h3>
           <div className={`${styles.filter_options} color-white-bg color-black flex flex-col gap-16`}>
-          <div>
-            <input type="radio" id="id" onChange={() => changeFilterType("id")} name="sort" value="id" />
-            <label className='cursor-pointer' htmlFor="id">Number</label>
-          </div>
-          <div>
-            <input type="radio" id="name" onChange={() => changeFilterType("name")} name="sort" value="name" />
-            <label className='cursor-pointer' htmlFor="name">Name</label>
-          </div>
-          <div>
-            <input type="radio" id="type" onChange={() => changeFilterType("type")} name="sort" value="type" />
-            <label className='cursor-pointer' htmlFor="type">Type</label>
-          </div>
+            {
+              options.map((option: Option) => (
+                <div>
+                  <input type="radio" id={option?.name} checked={option?.name === selectedFilter} onChange={() => changeFilterType(option?.name)} name="sort" value={option?.name} />
+                  <label className='cursor-pointer' htmlFor={option?.name}>{option?.label}</label>
+                </div>
+              ))
+            }
           </div>
         </div>
   )
