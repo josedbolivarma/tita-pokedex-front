@@ -92,7 +92,7 @@ export const GET_POKEMON_INFO = gql`
     height
 
     # Movimientos
-    pokemon_v2_pokemonmoves {
+    pokemon_v2_pokemonmoves(limit: 4) {
       move: pokemon_v2_move {
         name
       }
