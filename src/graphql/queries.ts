@@ -86,6 +86,24 @@ export const GET_POKEMON_INFO = gql`
         name
       }
     }
+
+    # Peso y Altura
+    weight
+    height
+
+    # Movimientos
+    pokemon_v2_pokemonmoves {
+      move: pokemon_v2_move {
+        name
+      }
+    }
+
+    # Descripción (flavor text)
+    pokemon_v2_pokemonspecy {
+      pokemon_v2_pokemonspeciesflavortexts(limit: 1) {
+        flavor_text
+      }
+    }
   }
 }
 `;

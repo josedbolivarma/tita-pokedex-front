@@ -22,8 +22,30 @@ export interface PokemonDetailResponse {
 export interface PokemonDetail {
   id: number;
   name: string;
+  height: number;
+  weight: number;
   pokemon_v2_pokemonstats: PokemonStat[],
   pokemon_v2_pokemontypes: PokemonTypes[],
+  pokemon_v2_pokemonspecy: SpeciesFlavorText,
+  pokemon_v2_pokemonmoves: Moves[]
+}
+
+interface Moves {
+  move: Move,
+}
+
+export interface Move {
+  name: string;
+}
+
+export 
+
+interface SpeciesFlavorText {
+  pokemon_v2_pokemonspeciesflavortexts: FlavorText[]
+}
+
+export interface FlavorText {
+  flavor_text: string;
 }
 
 // interface PokemonStats {

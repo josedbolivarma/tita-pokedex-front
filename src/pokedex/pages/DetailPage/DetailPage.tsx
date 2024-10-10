@@ -6,13 +6,13 @@ import { GET_POKEMON_INFO } from '../../../graphql';
 
 import styles from "./DetailPage.module.css";
 import { Layout } from '../../layouts';
-import { getTypeColor } from '../../../utils';
+import { capitalize, getTypeColor } from '../../../utils';
 import localFavorites from '../../../utils/localFavorites';
 
 import confetti from 'canvas-confetti';
 import { useDispatch, useSelector } from 'react-redux';
 import { searchByIdAsync, selectPrevAndNextPokemonAsync } from '../../../redux';
-import { PokemonDetailResponse } from '../../../interfaces/pokemon.interface';
+import { FlavorText, PokemonDetailResponse } from '../../../interfaces/pokemon.interface';
 import { AttributesContainer, BaseStatsContainer } from '../../containers';
 
 
@@ -88,7 +88,6 @@ export default function DetailPage() {
 
   if (error) return <p>Error: {error.message}</p>;
 
-
   return (
     <section className="root" style={{
       background: !pokemon_types ? "transparent" : getTypeColor(pokemon_types[0]?.pokemon_v2_type?.name)
@@ -153,10 +152,13 @@ export default function DetailPage() {
           <h4 className='font-size-24 text-center' style={{color}}>About</h4>
 
             {/* ATTRIBUTES */}
-          <AttributesContainer color={color} weight='60,0 kg' height='1m' moves={['Mega Punch', 'Fire Punch']} />
+          <AttributesContainer color={color} weight={`${pokemon?.weight} kg`} height={`${pokemon?.height} m`} moves={[capitalize(pokemon?.pokemon_v2_pokemonmoves[0]?.move?.name!), capitalize(pokemon?.pokemon_v2_pokemonmoves[1]?.move?.name!)]} />
             {/* END ATTRIBUTES */}
-
-          <p className='color-black font-size-14'>Eats Iron - And like sleeping all day long</p>
+          {
+            pokemon?.pokemon_v2_pokemonspecy?.pokemon_v2_pokemonspeciesflavortexts?.map((desc: FlavorText, index: number) => (
+              <p key={index} className='color-black font-size-14'>{desc?.flavor_text}</p>
+            ))
+          }
 
           {/* BASE STATS */}
           <BaseStatsContainer stats={pokemon?.pokemon_v2_pokemonstats!} color={color} />
