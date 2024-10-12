@@ -2,7 +2,7 @@
 
 <h3 align="center"><strong>Pokedex - Tita Media 💗</strong></h3>
 
-El objetivo principal del aplicativo es que el usuario pueda obtener una lista de pokemones, ir al detalle de cada uno de ellos, búscar pokemones, agregar a favoritos, crear y editar sus propios pokemones, asi cómo ver las creaciones de otros usuarios dentro de la comunidad.
+El objetivo principal del aplicativo es que el usuario pueda obtener una lista de pokemones, moverse entre la paginación, ir al detalle de cada uno de ellos, búscar pokemones por nombre, número de identificación o tipo, agregar a favoritos, crear y editar sus propios pokemones, asi cómo ver las creaciones de otros usuarios dentro de la comunidad.
 
 # Estado del Proyecto:
 
